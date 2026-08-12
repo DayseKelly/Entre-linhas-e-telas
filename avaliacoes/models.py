@@ -1,6 +1,6 @@
 from django.db import models
-from usuarios.models import Usuario  # Importa do app usuarios
-from obras.models import Obra        # Importa do app obras
+from usuarios.models import Usuario
+from obras.models import Obra
 
 class Avaliacao(models.Model):
     nota = models.FloatField()
@@ -9,4 +9,4 @@ class Avaliacao(models.Model):
     obra = models.ForeignKey(Obra, on_delete=models.CASCADE, related_name='avaliacoes')
 
     def __str__(self):
-        return f"Nota {self.nota} por {self.usuario.nome}"
+        return f"Nota {self.nota} por {self.usuario.user.username}"

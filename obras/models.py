@@ -1,12 +1,10 @@
 from django.db import models
-from temas.models import TemaEnem  # Importa do app temas
 
 class Obra(models.Model):
     titulo = models.CharField(max_length=150)
-    tipo = models.CharField(max_length=100)
+    autor = models.CharField(max_length=150)  # Campo 'autor' adicionado
     resumo = models.TextField()
-    capa = models.ImageField(upload_to='capas/')
-    temas = models.ManyToManyField(TemaEnem, related_name='obras')
+    capa = models.ImageField(upload_to='capas/', blank=True, null=True)
 
     def __str__(self):
         return self.titulo

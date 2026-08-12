@@ -15,13 +15,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Avaliacao',
+            name='UsuarioObra',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nota', models.FloatField()),
-                ('comentario', models.TextField()),
-                ('obra', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='avaliacoes', to='obras.obra')),
-                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='avaliacoes', to='usuarios.usuario')),
+                ('favorito', models.BooleanField(default=False)),
+                ('lido', models.BooleanField(default=False)),
+                ('obra', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='usuarios_interagiram', to='obras.obra')),
+                ('usuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='minhas_obras', to='usuarios.usuario')),
             ],
         ),
     ]
