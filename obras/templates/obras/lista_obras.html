@@ -1,0 +1,17 @@
+<h1>Minhas Obras</h1>
+
+<a href="{% url 'criar_obra' %}">Cadastrar Nova Obra</a>
+
+<hr>
+
+<ul>
+    {% for obra in obras%}
+        <li>
+            <strong>{{obra.titulo}}</strong> - {{ obra.get_tipo_display }}
+
+        </li>
+    {% empty %}
+        <li>Nenhuma obra cadastrada até o momento.</li>
+        {% endfor %}
+</ul>
+
