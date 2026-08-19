@@ -9,9 +9,8 @@ class Usuario(models.Model):
     data_nasc = models.DateField()
     rg = models.CharField(max_length=20)
     cpf = models.CharField(max_length=14, unique=True)
-    
     # FK_escola (1:N - uma escola para vários usuários)
     escola = models.ForeignKey(Escola, on_delete=models.CASCADE, related_name='usuarios')
 
     def __str__(self):
-        return self.user.username
+        return self.user

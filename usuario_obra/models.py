@@ -11,4 +11,4 @@ class UsuarioObra(models.Model):
     lido = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.usuario.user.username} - Obra: {self.obra.titulo}"
+        return f"{self.usuario.user.username} -Obra: {self.obra.titulo}"
