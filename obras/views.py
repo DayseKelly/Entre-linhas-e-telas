@@ -3,10 +3,8 @@ from .models import Obra
 from .forms import ObraForm
 
 def listar_obras(request):
-    
  obras = Obra.objects.all()
  return render(request, 'obras/lista_obras.html', {'obras': obras})
- 
 
 def criar_obra(request):
  if request.method == 'POST':
