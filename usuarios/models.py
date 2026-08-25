@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from escolas.models import Escola
+from django.contrib.auth.models import AbstractUser
 
-class Usuario(models.Model):
-    # Ligação de herança/perfil com o User nativo do Django
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil')
+# Aqui ligamos o Usuario ao AbstractUser, que é a classe base do Django para usuários.   
+class Usuario(AbstractUser):
+
+    
     
     data_nasc = models.DateField()
     rg = models.CharField(max_length=20)
