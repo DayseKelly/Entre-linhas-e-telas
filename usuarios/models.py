@@ -3,9 +3,8 @@ from django.contrib.auth.models import User
 from escolas.models import Escola
 
 class Usuario(User):
-    # Ligação de herança/perfil com o User nativo do Django
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil')
-    
+   
+ 
     data_nasc = models.DateField()
     rg = models.CharField(max_length=20)
     cpf = models.CharField(max_length=14, unique=True)
