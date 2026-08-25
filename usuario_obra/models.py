@@ -6,7 +6,7 @@ class UsuarioObra(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='minhas_obras')
     obra = models.ForeignKey(Obra, on_delete=models.CASCADE, related_name='usuarios_interagiram')
     
-    # Flags Booleanas (true or false) do diagrama
+    # (true or false) do diagrama
     favorito = models.BooleanField(default=False)
     lido = models.BooleanField(default=False)
 
