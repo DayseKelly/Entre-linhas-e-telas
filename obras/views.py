@@ -14,4 +14,4 @@ def criar_obra(request):
    return redirect('listar_obras')
  else:
   form = ObraForm()
- return render(request, 'obras/criar_obra.html', {'form': form})
+ return render(request, 'obras/form_obra.html', {'form': form})
