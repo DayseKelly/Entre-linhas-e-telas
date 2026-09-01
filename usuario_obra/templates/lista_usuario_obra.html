@@ -1,0 +1,9 @@
+<h2> Lista dos Usuários-Obra</h2>
+<a href="{% url 'criar_usuario_obra' %}">Cadastrar novo usuário-obra</a>
+<ul>
+    {% for usuario_obra in usuario_obras %}
+        <li>{{ usuario_obra }}</li>
+    {% empty %}
+        <li>Nenhum usuário-obra encontrado.</li>
+    {% endfor %}
+</ul>

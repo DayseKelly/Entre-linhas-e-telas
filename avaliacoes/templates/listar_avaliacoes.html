@@ -1,0 +1,8 @@
+<h2> Lista das Avaliações</h2>
+<ul>
+    {% for avaliacao in avaliacoes %}
+        <li>{{ avaliacao }}</li>
+    {% empty %}
+        <li>Nenhuma avaliação encontrada.</li>
+    {% endfor %}
+</ul>

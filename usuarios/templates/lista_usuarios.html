@@ -1,0 +1,9 @@
+<h2> Lista dos Usuários</h2>
+<a href="{% url 'criar_usuario' %}">Cadastrar novo usuário</a>
+<ul>
+    {% for usuario in usuarios %}
+        <li>{{ usuario }}</li>
+    {% empty %}
+        <li>Nenhum usuário encontrado.</li>
+    {% endfor %}
+</ul>
