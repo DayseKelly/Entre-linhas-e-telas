@@ -1,8 +1,23 @@
-<h2> Lista das Escolas</h2>
-<a href="{% url 'criar_escola' %}">Cadastrar nova escola</a>
+<h2>Lista das escolas</h2>
+
+<a href="{% url 'criar_escola' %}">Cadastrar escola</a>
+
 <ul>
     {% for escola in escolas %}
-        <li>{{ escola }}</li>
+        <li>
+            <a href="{% url 'detalhe_escola' escola.id %}">
+                {{ escola }}
+            </a>
+
+            <a href="{% url 'editar_escola' escola.id %}">
+                Editar
+            </a>
+
+            <a href="{% url 'excluir_escola' escola.id %}">
+                Excluir
+            </a>
+        </li>
     {% empty %}
         <li>Nenhuma escola encontrada.</li>
     {% endfor %}
+</ul>

@@ -2,7 +2,11 @@
 <a href="{% url 'criar_usuario' %}">Cadastrar novo usuário</a>
 <ul>
     {% for usuario in usuarios %}
-        <li>{{ usuario }}</li>
+        <li>
+            <a href="{% url 'detalhe_usuario' usuario.id %}">{{ usuario }}</a>
+            <a href="{% url 'editar_usuario' usuario.id %}">Editar</a>
+            <a href="{% url 'excluir_usuario' usuario.id %}">Excluir</a>
+        </li>
     {% empty %}
         <li>Nenhum usuário encontrado.</li>
     {% endfor %}

@@ -1,0 +1,14 @@
+<h2>Excluir obra</h2>
+
+<p>
+    Tem certeza de que deseja excluir a obra
+    <strong>{{ obra.titulo }}</strong>?
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit">Sim, excluir</button>
+</form>
+
+<a href="{% url 'detalhe_obra' obra.id %}">Cancelar</a>

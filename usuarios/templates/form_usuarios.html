@@ -1,6 +1,8 @@
-<h2> Cadastrar Usuário</h2>
+<h2>{{ titulo_pagina|default:'Cadastrar usuário' }}</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Salvar</button>
 </form>
+
+<a href="{% url 'listar_usuarios' %}">Voltar</a>

@@ -1,0 +1,7 @@
+<h2>Excluir relação usuário-obra</h2>
+<p>Deseja excluir esta relação?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sim, excluir</button>
+</form>
+<a href="{% url 'detalhe_usuario_obra' registro.id %}">Cancelar</a>

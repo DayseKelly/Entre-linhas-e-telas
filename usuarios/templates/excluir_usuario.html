@@ -1,0 +1,10 @@
+<h2>Excluir usuário</h2>
+
+<p>Deseja excluir <strong>{{ usuario.username }}</strong>?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sim, excluir</button>
+</form>
+
+<a href="{% url 'detalhe_usuario' usuario.id %}">Cancelar</a>

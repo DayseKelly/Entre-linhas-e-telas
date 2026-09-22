@@ -1,0 +1,10 @@
+<h2>Detalhes da relação</h2>
+
+<p><strong>Usuário:</strong> {{ registro.usuario.username }}</p>
+<p><strong>Obra:</strong> {{ registro.obra.titulo }}</p>
+<p><strong>Favorito:</strong> {{ registro.favorito|yesno:'Sim,Não' }}</p>
+<p><strong>Lido:</strong> {{ registro.lido|yesno:'Sim,Não' }}</p>
+
+<a href="{% url 'editar_usuario_obra' registro.id %}">Editar</a>
+<a href="{% url 'excluir_usuario_obra' registro.id %}">Excluir</a>
+<a href="{% url 'listar_usuario_obras' %}">Voltar</a>

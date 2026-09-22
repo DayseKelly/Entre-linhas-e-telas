@@ -1,7 +1,11 @@
 <h2> Lista das Avaliações</h2>
 <ul>
     {% for avaliacao in avaliacoes %}
-        <li>{{ avaliacao }}</li>
+        <li>
+            <a href="{% url 'detalhe_avaliacao' avaliacao.id %}">{{ avaliacao }}</a>
+            <a href="{% url 'editar_avaliacao' avaliacao.id %}">Editar</a>
+            <a href="{% url 'excluir_avaliacao' avaliacao.id %}">Excluir</a>
+        </li>
     {% empty %}
         <li>Nenhuma avaliação encontrada.</li>
     {% endfor %}

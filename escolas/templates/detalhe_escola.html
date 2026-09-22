@@ -1,0 +1,8 @@
+<h2>{{ escola.nome }}</h2>
+
+<p><strong>Cidade:</strong> {{ escola.cidade }}</p>
+<p><strong>Estado:</strong> {{ escola.estado }}</p>
+
+<a href="{% url 'editar_escola' escola.id %}">Editar</a>
+<a href="{% url 'excluir_escola' escola.id %}">Excluir</a>
+<a href="{% url 'listar_escolas' %}">Voltar</a>

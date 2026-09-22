@@ -1,0 +1,8 @@
+<h2>{{ usuario.username }}</h2>
+
+<p><strong>Data de nascimento:</strong> {{ usuario.data_nasc }}</p>
+<p><strong>Escola:</strong> {{ usuario.escola }}</p>
+
+<a href="{% url 'editar_usuario' usuario.id %}">Editar</a>
+<a href="{% url 'excluir_usuario' usuario.id %}">Excluir</a>
+<a href="{% url 'listar_usuarios' %}">Voltar</a>

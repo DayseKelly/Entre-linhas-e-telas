@@ -1,0 +1,10 @@
+<h2>Detalhes da avaliação</h2>
+
+<p><strong>Nota:</strong> {{ avaliacao.nota }}</p>
+<p><strong>Comentário:</strong> {{ avaliacao.comentario }}</p>
+<p><strong>Usuário:</strong> {{ avaliacao.usuario.username }}</p>
+<p><strong>Obra:</strong> {{ avaliacao.obra.titulo }}</p>
+
+<a href="{% url 'editar_avaliacao' avaliacao.id %}">Editar</a>
+<a href="{% url 'excluir_avaliacao' avaliacao.id %}">Excluir</a>
+<a href="{% url 'listar_avaliacoes' %}">Voltar</a>

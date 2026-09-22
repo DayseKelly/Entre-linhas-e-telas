@@ -1,0 +1,14 @@
+<h2>Excluir escola</h2>
+
+<p>
+    Deseja excluir a escola
+    <strong>{{ escola.nome }}</strong>?
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit">Sim, excluir</button>
+</form>
+
+<a href="{% url 'detalhe_escola' escola.id %}">Cancelar</a>
