@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Escola
 from .forms import EscolaForm
+from django.contrib.auth.decorators import login_required, permission_required
 
 def listar_escolas(request):
     escolas = Escola.objects.all()
     return render(request, 'escolas/lista_escolas.html', {'escolas': escolas})
+
+
+@login_required(login_url='login')
+@permission_required('escolas.add_escola', login_url='login', raise_exception=True)
 
 def criar_escola(request):
     if request.method == 'POST':

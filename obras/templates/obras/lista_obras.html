@@ -1,4 +1,17 @@
-<h1>Lista das Obras</h1>
+
+
+<nav style="background-color: #f0f0f0; padding: 10px; margin-bottom: 20px;">
+    <strong>Menu do Sistema:</strong>
+    <a href="{% url 'listar_obras' %}">Obras</a> | 
+    <a href="{% url 'listar_escolas' %}">Escolas</a> | 
+    <a href="{% url 'listar_avaliacoes' %}">Avaliações</a> | 
+    <a href="{% url 'listar_usuario_obras' %}">Usuário-Obras</a> | 
+    
+    <!-- Botão de Sair no cantinho -->
+    <a href="{% url 'logout' %}" style="color: red; float: right;">Sair do Sistema</a>
+</nav>
+
+<hr><h1>Lista das Obras</h1>
 
 <a href="{% url 'criar_obra' %}">Cadastrar Nova Obra</a>
 
