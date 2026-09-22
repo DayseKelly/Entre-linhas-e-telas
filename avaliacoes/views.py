@@ -7,15 +7,13 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 
 @login_required
-@permission_required('avaliacoes.view_avaliacoes')
-
+@permission_required('avaliacoes.view_avaliacao')
 def listar_avaliacoes(request):
     avaliacoes = Avaliacao.objects.all()
     return render(request, 'avaliacoes/lista_avaliacoes.html', {'avaliacoes': avaliacoes})
 
 @login_required
-@permission_required('avaliacoes.add_avaliacoes')
-
+@permission_required('avaliacoes.add_avaliacao')
 def criar_avaliacao(request):
     if request.method == 'POST':
         form = AvaliacaoForm(request.POST)

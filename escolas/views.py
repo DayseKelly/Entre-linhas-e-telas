@@ -5,16 +5,14 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 
 @login_required
-@permission_required('escolas.view_escolas')
-
+@permission_required('escolas.view_escola')
 def listar_escolas(request):
     escolas = Escola.objects.all()
     return render(request, 'escolas/lista_escolas.html', {'escolas': escolas})
 
 
 @login_required
-@permission_required('escolas.add_escolas')
-
+@permission_required('escolas.add_escola')
 def criar_escola(request):
     if request.method == 'POST':
         form = EscolaForm(request.POST)

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Obra
 from .forms import ObraForm
 from django.contrib.auth.decorators import login_required, permission_required
@@ -6,14 +6,13 @@ from django.contrib import messages
 
 
 @login_required
-@permission_required('obras.view_obras')
+@permission_required('obras.view_obra')
 def listar_obras(request):
  obras = Obra.objects.all()
  return render(request, 'obras/lista_obras.html', {'obras': obras})
 
 @login_required
-@permission_required('obras.add_obras')
-
+@permission_required('obras.add_obra')
 def criar_obra(request):
  if request.method == 'POST':
   form = ObraForm(request.POST, request.FILES)
@@ -26,18 +25,8 @@ def criar_obra(request):
   form = ObraForm()
  return render(request, 'obras/form_obra.html', {'form': form})
 
-
- def detalhe_obra(request, id):
-=======
-# DENTRO DE obras/views.py
-
-
 @login_required
-@permission_required('obras.view_obras')
+@permission_required('obras.view_obra')
 def detalhe_obra(request, id):
-
-    # O get_object_or_404 busca a obra pelo ID no banco de dados.
-    # Se o ID não existir (ex: /obras/9999/), ele abre uma página de erro 404 em vez de quebrar o site.
     obra = get_object_or_404(Obra, id=id)
-    
     return render(request, 'obras/detalhe_obra.html', {'obra': obra})
