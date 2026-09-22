@@ -1,0 +1,70 @@
+HTML
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    
+    <!-- Bloco Roxo Superior: Resumo (Figma) -->
+    <div class="p-4 rounded-4 mb-4 text-white shadow-sm" style="background-color: #8b5cf6;">
+        <h4 class="fw-bold mb-2">Resumo – {{ obra.titulo }}</h4>
+        <p class="m-0" style="font-size: 1.05rem; line-height: 1.6;">
+            {{ obra.resumo|default:"Nenhum resumo cadastrado para esta obra ainda." }}
+        </p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Coluna da Esquerda: Capa, Título e Nota -->
+        <div class="col-md-5 col-lg-4">
+            <div class="card card-obra p-3 text-center bg-white shadow-sm rounded-4">
+                {% if obra.capa %}
+                    <img src="{{ obra.capa.url }}" class="img-fluid rounded-3 mb-3" style="max-height: 350px; object-fit: cover;" alt="{{ obra.titulo }}">
+                {% else %}
+                    <div class="bg-light rounded-3 d-flex align-items-center justify-content-center mb-3 text-muted" style="height: 300px;">
+                        <span>Sem Capa</span>
+                    </div>
+                {% endif %}
+
+                <div class="d-flex align-items-center justify-content-between px-2">
+                    <span class="fs-5 fw-bold text-primary">★ 4.8</span>
+                    <h5 class="fw-bold m-0 text-dark">{{ obra.titulo }}</h5>
+                </div>
+            </div>
+            
+            <a href="{% url 'listar_obras' %}" class="btn btn-outline-secondary w-100 mt-3 rounded-pill">
+                <i class="fas fa-arrow-left me-2"></i> Voltar para a lista
+            </a>
+        </div>
+
+        <!-- Coluna da Direita: Comentários -->
+        <div class="col-md-7 col-lg-8">
+            <h5 class="fw-bold text-dark mb-3">Comentários</h5>
+
+            <!-- Exemplo de Comentário estático estruturado estilo Figma -->
+            <div class="card border-0 shadow-sm rounded-4 p-3 mb-3 bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-purple text-white rounded-circle text-center me-2" style="width: 35px; height: 35px; line-height: 35px; background-color: #8b5cf6;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <strong class="text-dark">Lara_pinto</strong>
+                    </div>
+                    <span class="text-warning fw-bold">★ 5.0</span>
+                </div>
+                <p class="text-muted m-0 small">
+                    Gostei muito do conteúdo! Aborda os temas de forma crítica e direta.
+                </p>
+            </div>
+
+            <!-- Campo para enviar percepção/comentário -->
+            <div class="mt-4">
+                <div class="input-group">
+                    <input type="text" class="form-control rounded-start-pill py-3 px-4 border-0 shadow-sm" placeholder="Escreva a sua percepção...">
+                    <button class="btn text-white rounded-end-pill px-4" style="background-color: #8b5cf6;" type="button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

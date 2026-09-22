@@ -4,4 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.listar_obras, name='listar_obras'),
     path('criar/', views.criar_obra, name='criar_obra'),
+    
+    # <int:id> significa que a URL espera um número inteiro (ex: /obras/1/, /obras/2/)
+    path('<int:id>/', views.detalhe_obra, name='detalhe_obra'),
 ]
