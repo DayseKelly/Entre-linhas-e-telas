@@ -3,12 +3,18 @@ from .models import Avaliacao
 from .forms import AvaliacaoForm
 from django.contrib.auth.decorators import login_required, permission_required
 
+
+
+
+@login_required
+@permission_required('avaliacoes.view_avaliacoes')
+
 def listar_avaliacoes(request):
     avaliacoes = Avaliacao.objects.all()
     return render(request, 'avaliacoes/lista_avaliacoes.html', {'avaliacoes': avaliacoes})
 
-@login_required(login_url='login')
-@permission_required('avaliacoes.add_avaliacao', login_url='login', raise_exception=True)
+@login_required
+@permission_required('avaliacoes.add_avaliacoes')
 
 def criar_avaliacao(request):
     if request.method == 'POST':

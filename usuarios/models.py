@@ -12,4 +12,4 @@ class Usuario(User):
     escola = models.ForeignKey(Escola, on_delete=models.CASCADE, related_name='usuarios')
 
     def __str__(self):
-        return self.user
+        return self.username

@@ -3,11 +3,17 @@ from .models import Usuario
 from .forms import UsuarioForm
 from django.contrib.auth.forms import AuthenticationForm       
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
+@permission_required("usuario.view_usuario")
 def listar_usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'usuarios/lista_usuarios.html', {'usuarios': usuarios})
 
+
+@login_required
+@permission_required("usuario.add_usuario")
 def criar_usuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
@@ -31,6 +37,7 @@ def fazer_login(request):
     
     return render(request, 'usuarios/login.html', {'form': form})
 
+@login_required
 def fazer_logout(request):
     logout(request)
     return redirect('login')

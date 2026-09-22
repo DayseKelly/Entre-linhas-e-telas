@@ -4,12 +4,15 @@ from .forms import ObraForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
+
+@login_required
+@permission_required('obras.view_obras')
 def listar_obras(request):
  obras = Obra.objects.all()
  return render(request, 'obras/lista_obras.html', {'obras': obras})
 
-@login_required(login_url='login')
-@permission_required('obras.add_obra', login_url='login', raise_exception=True)
+@login_required
+@permission_required('obras.add_obras')
 
 def criar_obra(request):
  if request.method == 'POST':
@@ -28,6 +31,9 @@ def criar_obra(request):
 =======
 # DENTRO DE obras/views.py
 
+
+@login_required
+@permission_required('obras.view_obras')
 def detalhe_obra(request, id):
 
     # O get_object_or_404 busca a obra pelo ID no banco de dados.
