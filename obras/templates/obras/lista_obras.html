@@ -24,7 +24,20 @@
 
         </li>
     {% empty %}
-        <li>Nenhuma obra cadastrada até o momento.</li>
+        <li>Nenhuma obra cadastrada até agora.</li>
         {% endfor %}
 </ul>
 
+{% for obra in obras %}
+    <div class="col-md-3">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-3">
+            <!-- Link dinâmico apontando para a view de detalhe passando o ID da obra -->
+            <a href="{% url 'detalhe_obra' obra.id %}" class="text-decoration-none color-dark">
+                {% if obra.capa %}
+                    <img src="{{ obra.capa.url }}" class="card-img-top rounded-3 mb-2" alt="{{ obra.titulo }}">
+                {% endif %}
+                <h6 class="fw-bold text-dark m-0">{{ obra.titulo }}</h6>
+            </a>
+        </div>
+    </div>
+{% endfor %}
