@@ -19,6 +19,7 @@
 			<dt class="col-sm-3">Escola</dt>
 			<dd class="col-sm-9">{{ usuario.escola|default:"Não informada" }}</dd>
 		</dl>
+		
 		<div class="d-flex flex-wrap gap-2 mt-4">
 			<a class="btn btn-primary" href="{% url 'editar_usuario' usuario.id %}">Editar usuário</a>
 			<a class="btn btn-outline-danger" href="{% url 'excluir_usuario' usuario.id %}">Excluir usuário</a>

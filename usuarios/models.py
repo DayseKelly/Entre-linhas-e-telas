@@ -8,7 +8,6 @@ class Usuario(models.Model):
     rg = models.CharField(max_length=20)
     cpf = models.CharField(max_length=14, unique=True)
     escola = models.ForeignKey(Escola, on_delete=models.CASCADE, related_name='usuarios')
-
     @property
     def username(self):
         return self.user.username
