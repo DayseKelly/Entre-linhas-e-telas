@@ -6,6 +6,7 @@ from .forms import UsuarioForm
 from django.contrib.auth.forms import AuthenticationForm       
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required, permission_required
+from django.db import transaction
 
 User = get_user_model()
 
@@ -108,6 +109,24 @@ def fazer_login(request):
     form.error_messages['invalid_login'] = 'Usuário ou senha incorretos.'
     
     return render(request, 'login.html', {'form': form})
+
+
+def cadastrar(request):
+    if request.user.is_authenticated:
+        return redirect('minha_area')
+
+    if request.method == 'POST':
+        form = CadastroPublicoForm(request.POST)
+        if form.is_valid():
+            with transaction.atomic():
+                perfil = form.save()
+            login(request, perfil.user)
+            messages.success(request, 'Sua conta foi criada com sucesso.')
+            return redirect('minha_area')
+    else:
+        form = CadastroPublicoForm()
+
+    return render(request, 'cadastro.html', {'form': form})
 
 @login_required
 def fazer_logout(request):
