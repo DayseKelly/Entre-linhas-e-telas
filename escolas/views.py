@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib import messages
 from .models import Escola
 from .forms import EscolaForm
 from django.contrib.auth.decorators import login_required, permission_required
@@ -18,6 +19,7 @@ def criar_escola(request):
         form = EscolaForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Escola cadastrada com sucesso.')
             return redirect('listar_escolas')
     else:
         form = EscolaForm()
@@ -38,6 +40,7 @@ def editar_escola(request, id):
         form = EscolaForm(request.POST, instance=escola)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Escola editada com sucesso.')
             return redirect('detalhe_escola', id=escola.id)
     else:
         form = EscolaForm(instance=escola)
@@ -54,6 +57,7 @@ def excluir_escola(request, id):
 
     if request.method == 'POST':
         escola.delete()
+        messages.success(request, 'Escola excluída com sucesso.')
         return redirect('listar_escolas')
 
     return render(request, 'excluir_escola.html', {'escola': escola})

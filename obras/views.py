@@ -1,15 +1,22 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Obra
+from .models import Obra, Tema
 from .forms import ObraForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 
 
 @login_required
-@permission_required('obras.view_obra')
 def listar_obras(request):
- obras = Obra.objects.all()
- return render(request, 'obras/lista_obras.html', {'obras': obras})
+    temas = Tema.objects.all()
+    obras = Obra.objects.prefetch_related('temas').order_by('titulo')
+    tema_id = request.GET.get('tema', '')
+    if tema_id.isdigit():
+        obras = obras.filter(temas__id=tema_id)
+    return render(request, 'obras/lista_obras.html', {
+        'obras': obras,
+        'temas': temas,
+        'tema_selecionado': tema_id,
+    })
 
 @login_required
 @permission_required('obras.add_obra')
@@ -32,10 +39,41 @@ def criar_obra(request):
 
   
 @login_required
-@permission_required('obras.view_obra')
 def detalhe_obra(request, id):
     obra = get_object_or_404(Obra, id=id)
-    return render(request, 'obras/detalhe_obra.html', {'obra': obra})
+    from avaliacoes.forms import ComentarioForm
+    from avaliacoes.models import Avaliacao
+    from usuario_obra.models import UsuarioObra
+    from django.db.models import Avg
+
+    minha_avaliacao = Avaliacao.objects.filter(obra=obra, usuario=request.user).first()
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST, instance=minha_avaliacao)
+        if form.is_valid():
+            avaliacao = form.save(commit=False)
+            avaliacao.obra = obra
+            avaliacao.usuario = request.user
+            avaliacao.save()
+            messages.success(request, 'Sua avaliação foi publicada.')
+            return redirect('detalhe_obra', id=obra.id)
+    else:
+        form = ComentarioForm(instance=minha_avaliacao)
+
+    avaliacoes = obra.avaliacoes.select_related('usuario').order_by('-id')
+    resumo_avaliacoes = avaliacoes.aggregate(media=Avg('nota'))
+    favorito = UsuarioObra.objects.filter(
+        usuario=request.user,
+        obra=obra,
+        favorito=True,
+    ).exists()
+    return render(request, 'obras/detalhe_obra.html', {
+        'obra': obra,
+        'avaliacao_form': form,
+        'minha_avaliacao': minha_avaliacao,
+        'avaliacoes': avaliacoes,
+        'media_avaliacoes': resumo_avaliacoes['media'],
+        'favorito': favorito,
+    })
 
 @login_required
 @permission_required('obras.change_obra', raise_exception=True)
