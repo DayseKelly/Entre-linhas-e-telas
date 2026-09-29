@@ -5,7 +5,6 @@ from django.urls import reverse
 from obras.models import Obra
 from .models import Avaliacao
 
-
 class AvaliacoesTests(TestCase):
 	def setUp(self):
 		self.usuario = get_user_model().objects.create_user(username='leitora', password='senha-segura-123')
@@ -29,7 +28,8 @@ class AvaliacoesTests(TestCase):
 		self.assertEqual(avaliacao.nota, 9)
 		self.assertEqual(avaliacao.comentario, 'Atualizei minha leitura.')
 
-	def test_aba_mostra_apenas_comentarios_da_conta_atual(self):
+
+def test_aba_mostra_apenas_comentarios_da_conta_atual(self):
 		Avaliacao.objects.create(usuario=self.usuario, obra=self.obra, nota=8, comentario='Meu comentário visível.')
 		outra_obra = Obra.objects.create(titulo='Outro livro', autor='Outro autor', resumo='')
 		Avaliacao.objects.create(usuario=self.outra_pessoa, obra=outra_obra, nota=7, comentario='Comentário alheio.')

@@ -28,7 +28,7 @@ class UsuarioForm(forms.ModelForm):
         else:
             self.fields['password'].required = True
 
-    def clean_username(self):
+def clean_username(self):
         username = self.cleaned_data['username']
         users = User.objects.filter(username=username)
         if self.instance.pk:

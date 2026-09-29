@@ -16,8 +16,7 @@ class AreaPessoalTests(TestCase):
 		self.assertEqual(resposta.status_code, 200)
 		self.assertContains(resposta, 'Meus favoritos')
 		self.assertContains(resposta, 'Meus comentários')
-
-
+		
 class GestaoUsuariosTests(TestCase):
 	def setUp(self):
 		self.administrador = get_user_model().objects.create_superuser(

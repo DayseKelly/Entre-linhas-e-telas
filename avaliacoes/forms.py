@@ -15,7 +15,6 @@ class AvaliacaoForm(forms.ModelForm):
             'comentario': forms.Textarea(attrs={'rows': 4}),
         }
 
-
 class ComentarioForm(forms.ModelForm):
     class Meta:
         model = Avaliacao
