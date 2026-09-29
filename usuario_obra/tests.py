@@ -5,7 +5,6 @@ from django.urls import reverse
 from obras.models import Obra
 from .models import UsuarioObra
 
-
 class FavoritosTests(TestCase):
 	def setUp(self):
 		self.usuario = get_user_model().objects.create_user(username='leitora', password='senha-segura-123')

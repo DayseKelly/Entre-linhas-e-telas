@@ -13,6 +13,5 @@ class Avaliacao(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['usuario', 'obra'], name='avaliacao_unica_por_usuario_obra'),
         ]
-
-    def __str__(self):
+def __str__(self):
         return f"Nota {self.nota} por {self.usuario.username}"
