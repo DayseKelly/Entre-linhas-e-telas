@@ -6,7 +6,8 @@
 <header class="page-heading">
     <div><span class="page-eyebrow">Espaço pessoal</span><h1>Olá, {{ user.username }}</h1><p class="page-description">Seu acervo salvo e suas conversas sobre os repertórios.</p></div>
     <a class="btn btn-outline-secondary" href="{% url 'listar_obras' %}"><i class="bi bi-search me-1" aria-hidden="true"></i>Explorar repertórios</a>
-</header>
+
+    </header>
 {% include "_area_tabs.html" %}
 <div class="row g-3">
     <div class="col-md-6">
@@ -15,6 +16,7 @@
             <span class="personal-feature-copy"><strong>Meus favoritos</strong><span>Repertórios que você guardou para usar depois.</span></span>
             <span class="personal-feature-count">{{ favoritos_total }}</span>
         </a>
+        
     </div>
     <div class="col-md-6">
         <a class="personal-feature" href="{% url 'minhas_avaliacoes' %}">

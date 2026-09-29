@@ -17,6 +17,7 @@ def listar_usuarios(request):
     return render(request, 'lista_usuarios.html', {'usuarios': usuarios})
 
 
+
 @login_required
 def minha_area(request):
     try:

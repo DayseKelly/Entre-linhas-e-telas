@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block title %}Usuários | Entre Linhas e Telas{% endblock %}
-
 {% block content %}
 <header class="page-heading">
     <div><span class="page-eyebrow">Comunidade</span><h1>Usuários</h1><p class="page-description">Leitores cadastrados na plataforma.</p></div>
@@ -13,6 +12,7 @@
         <tbody>
         {% for usuario in usuarios %}
             <tr>
+                
                 <td><a class="fw-semibold text-decoration-none" href="{% url 'detalhe_usuario' usuario.id %}">{{ usuario.username }}</a></td>
                 <td>{{ usuario.escola|default:"—" }}</td>
                 <td class="text-end text-nowrap"><a class="btn btn-sm btn-outline-secondary" href="{% url 'editar_usuario' usuario.id %}">Editar</a> <a class="btn btn-sm btn-outline-danger" href="{% url 'excluir_usuario' usuario.id %}">Excluir</a></td>
